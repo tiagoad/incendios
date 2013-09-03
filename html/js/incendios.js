@@ -21,7 +21,8 @@ L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_
 	attribution: '<a href="http://mapicons.nicolasmollet.com">Map Icons Collection</a>' + ' | ' +
 	'<a href="http://www.esri.com/software/arcgis/arcgisonline/maps/maps-and-map-layers">ESRI</a>' + ' | ' + 
 	'<a href="http://www.prociv.pt/cnos/Pages/ListaFogos.aspx">Dados</a>' + ' | ' +
-	'Alojado numa <a href="http://www.raspberrypi.org/">Raspberry Pi</a>',
+	'Alojado numa <a href="http://www.raspberrypi.org/">Raspberry Pi</a>' + ' | ' +
+	'<a href="https://github.com/ttsda/incendios.ttsda.cc">GitHub</a>',
 	maxZoom: 18
 }).addTo(map)
 
