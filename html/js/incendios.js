@@ -20,7 +20,8 @@ var ready = false;
 L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}.png', {
 	attribution: '<a href="http://mapicons.nicolasmollet.com">Map Icons Collection</a>' + ' | ' +
 	'<a href="http://www.esri.com/software/arcgis/arcgisonline/maps/maps-and-map-layers">ESRI</a>' + ' | ' + 
-	'<a href="http://www.prociv.pt/cnos/Pages/ListaFogos.aspx">Dados</a>' + ' | ' +
+	'<a href="http://www.prociv.pt/cnos/Pages/ListaFogos.aspx">Dados (Incêndios)</a>' + ' | ' +
+	'<a href="http://www.ipma.pt/pt/ambiente/risco.incendio/">Dados (Risco)</a>' + ' | ' +
 	'Alojado numa <a href="http://www.raspberrypi.org/">Raspberry Pi</a>' + ' | ' +
 	'<a href="https://github.com/ttsda/incendios.ttsda.cc">GitHub</a>',
 	maxZoom: 18
