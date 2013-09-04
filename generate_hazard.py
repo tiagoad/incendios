@@ -14,7 +14,7 @@ import os
 import requests
 
 # Processing
-from PIL import Image
+from PIL import Image, ImageFile
 import StringIO
 import operator
 
@@ -55,6 +55,7 @@ logging.info('Downloading image')
 r = requests.get('http://www.ipma.pt/resources.www/transf/indices/rcm_dh.jpg')
 
 # Load the image's pixels into an array
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 logging.info('Loading image')
 im = Image.open(StringIO.StringIO(r.content))
 image = im.load()

@@ -9,7 +9,7 @@ Dependencies
 * [requests](http://python-requests.org) ([pypi](https://pypi.python.org/pypi/requests))
 * [pyproj](http://code.google.com/p/pyproj) ([pypi](https://pypi.python.org/pypi/pyproj))
 * [pyyaml](http://pyyaml.org) ([pypi](https://pypi.python.org/pypi/pyyaml))
-* [PIL](http://www.pythonware.com/products/pil) ([pypi](https://pypi.python.org/pypi/PIL))
+* [Pillow](http://python-imaging.github.io/) ([pypi](https://pypi.python.org/pypi/Pillow))
 
 Usage
 -----
