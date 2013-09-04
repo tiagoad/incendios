@@ -109,16 +109,65 @@ legend.onAdd = function (map){
 legend.addTo(map)
 
 /* Layer Toggles */
+// Toggle definition
+var layerToggles = [
+	{
+		id: 'hazardLayerToggle',
+		layer: layers.hazardLayer,
+		icon: 'img/hazard.png',
+		def: false,
+		disabled: true
+	},
+	{
+		id: 'controlPostLayerToggle',
+		layer: layers.controlPostLayer,
+		icon: 'img/binoculars.png',
+		def: false,
+		disabled: false
+	}
+]
+
+// Toggle creation
 var toggles = L.control({position: 'topleft'})
 toggles.onAdd = function (map){
 	var div = L.DomUtil.create('div', 'info')
-
-	div.innerHTML += '<img class="markericon" src="img/hazard.png"><input type="checkbox" id="showhazard" disabled="disabled" onchange="javascript:toggleLayer(layers.hazardLayer, \'showhazard\', $(this).is(\':checked\'))"/><br><br>'
-	div.innerHTML += '<img class="markericon" src="img/binoculars.png"><input type="checkbox" id="showposts" onchange="javascript:toggleLayer(layers.controlPostLayer, \'showposts\', $(this).is(\':checked\'))"/>'
-
+	
+	$.each(layerToggles, function(key, value) {
+		div.innerHTML += '<img class="markericon" src="' + value.icon + '" />'
+		div.innerHTML += '<input type="checkbox" id="' + value.id + '" />'
+		
+		if (key+1 != layerToggles.length)
+			div.innerHTML += '<br><br>'
+		
+	})
 	return div
 }
+
 toggles.addTo(map)
+
+$.each(layerToggles, function(key, value) {
+	object = $('#' + value.id)
+
+	object.change(function(e) {
+		toggleLayer(value.layer, value.id, this.checked)
+	})
+	
+	// Set to disabled (or not)
+	object.prop('disabled', value.disabled);
+	
+	// Check cookies
+	if ($.cookie(value.id) != undefined)
+	{
+		cookieValue = $.cookie(value.id) == 'true' ? true : false
+
+		object.prop('checked', (cookieValue))
+		toggleLayer(value.layer, value.id, cookieValue)
+	}
+	else
+	{
+		object.prop('checked', value.def)
+	}
+})
 
 /* Toggle a layer */
 function toggleLayer(layer, id, status)
@@ -293,7 +342,7 @@ function pullHazardData()
 				style: getStyle
 			}).addTo(layers.hazardLayer)
 			
-			$('#showhazard').prop('disabled', false);
+			$('#hazardLayerToggle').prop('disabled', false);
 			setTimeout(function() {stopSpinner()}, 1000)
 		})
 	})
@@ -310,16 +359,3 @@ function pullHazardData()
     pullHazardData()
     setTimeout(arguments.callee, 600*1000)
 })();
-
-/* Check cookies */
-if ($.cookie('showposts') == 'true')
-{
-	$('#showposts').prop('checked', true)
-	map.addLayer(layers.controlPostLayer)
-}
-
-if ($.cookie('showhazard') == 'true')
-{
-	$('#showhazard').prop('checked', true)
-	map.addLayer(layers.hazardLayer)
-}
