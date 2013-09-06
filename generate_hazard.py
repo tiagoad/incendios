@@ -148,7 +148,7 @@ concelhos = {
 	'Oliveira do Bairro': (196, 223),
 	'Ovar': (191, 181),
 	'Santa Maria da Feira': (200, 170),
-	'São João da Madeira': (203, 177),
+	#'São João da Madeira': (203, 177), Removed because the image doesn't have enough resolution
 	'Sever do Vouga': (213, 195),
 	'Vagos': (184, 221),
 	'Vale de Cambra': (216, 183),
@@ -324,7 +324,7 @@ concelhos = {
 	'Alijó': (293, 130),
 	'Boticas': (274, 86),
 	'Chaves': (292, 81),
-	'Mesão Frio': (256, 146),
+	'Mesão Frio': (258, 142),
 	'Mondim de Basto': (255, 121),
 	'Montalegre': (261, 72),
 	'Murça': (295, 117),
