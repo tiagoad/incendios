@@ -50,7 +50,10 @@ def clean(string):
 
 # Request the HTML page from Proteção Cívil
 logging.info('Requesting HTML')
-r = requests.get('http://www.prociv.pt/Publico/fogoslist2007.asp')
+headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.73.11 (KHTML, like Gecko) Version/7.0.1 Safari/537.73.11' # Extremely common User Agent
+}
+r = requests.get('http://www.prociv.pt/Publico/fogoslist2007.asp', headers=headers, timeout=10)
 
 # List that will be filled with the fires
 output = {}
