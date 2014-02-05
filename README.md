@@ -10,6 +10,7 @@ Dependencies
 * [pyproj](http://code.google.com/p/pyproj) ([pypi](https://pypi.python.org/pypi/pyproj))
 * [pyyaml](http://pyyaml.org) ([pypi](https://pypi.python.org/pypi/pyyaml))
 * [Pillow](http://python-imaging.github.io/) ([pypi](https://pypi.python.org/pypi/Pillow))
+* [pytidylib](http://countergram.com/open-source/pytidylib) ([pypi](http://countergram.com/open-source/pytidylib))
 
 Usage
 -----
