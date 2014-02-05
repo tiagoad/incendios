@@ -52,7 +52,7 @@ def difference(a, b):
 
 # Download today's fire hazard image from the ipma website
 logging.info('Downloading image')
-r = requests.get('http://www.ipma.pt/resources.www/transf/indices/rcm_dh.jpg')
+r = requests.get('http://www.ipma.pt/resources.www/transf/indices/rcm_dh.jpg', timeout=10)
 
 # Load the image's pixels into an array
 ImageFile.LOAD_TRUNCATED_IMAGES = True
