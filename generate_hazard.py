@@ -31,25 +31,6 @@ if config['debug']:
 	log_level = logging.INFO
 logging.basicConfig(format='[%(levelname)s] %(message)s', level=log_level)
 
-
-def subtract_tups(a, b):
-	"""
-	Subtracts two tuples
-	"""
-	return tuple(map(operator.sub, a, b))
-
-def average_tup(tup):
-	"""
-	Averages all the values in a tuple
-	"""
-	return sum(tup)/len(tup)
-	
-def difference(a, b):
-	"""
-	Shows the average difference between two tuples
-	"""
-	return abs(average_tup(subtract_tups(a, b)))
-
 # Download today's fire hazard image from the ipma website
 logging.info('Downloading image')
 r = requests.get('http://www.ipma.pt/resources.www/transf/indices/rcm_dh.jpg', timeout=10)
@@ -72,8 +53,17 @@ def getLevel(x, y):
 		1: image[350,650]
 	}
 
-	differences = {k: difference(image[x, y], v) for k, v in levels.items()}
-	return min(differences, key=differences.get)
+	closest = (0, 196609) # Level, Difference
+	
+	# Level, Level color
+	for level, lc in levels.iteritems():
+		pc = image[x, y] # Pixel color
+		difference = (pc[0]-lc[0])**2 + (pc[1]-lc[1])**2 + (pc[2]-lc[2])**2
+		
+		if difference < closest[1]:
+			closest = (level, difference)
+	
+	return closest[0]
 
 # List of municipalities and location of a pixel that's within it's limits
 concelhos = {
