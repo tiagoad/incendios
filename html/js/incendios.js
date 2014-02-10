@@ -117,7 +117,7 @@ var layerToggles = [
 		id: 'hazardLayerToggle',
 		layer: layers.hazardLayer,
 		icon: 'img/hazard.png',
-		def: false,
+		def: true,
 		disabled: true
 	},
 	{
