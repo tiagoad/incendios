@@ -267,7 +267,7 @@ function pullFireData()
 	startSpinner();
 
 	/* Download fires.json */
-	$.getJSON('/fires.json', function(data) {
+	$.getJSON('fires.json', function(data) {
 		layers.controlPostLayer.clearLayers();
 		
 		/* Delete fires that no longer exist */
@@ -311,7 +311,7 @@ function pullHazardData()
 {
 	startSpinner();
 	
-	$.getJSON('/hazard.json', function(hazardData) {
+	$.getJSON('hazard.json', function(hazardData) {
 		/* Apply the hazard color to each municipality */
 		function getStyle(feature) {
 			var color = 'grey';
@@ -346,7 +346,7 @@ function pullHazardData()
 			};
 		}
 		
-		$.getJSON('/js/concelhos.json', function(municipalityData) {
+		$.getJSON('js/concelhos.json', function(municipalityData) {
 			L.geoJson(municipalityData, {
 				style: getStyle
 			}).addTo(layers.hazardLayer);

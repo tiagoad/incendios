@@ -1,8 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# risco.py
-# Generates the hazard.json file with all the fire hazard information
+"""
+generate_hazard.py -- Generates the hazard.json file with all the fire hazard information
+Copyright (C) 2014 Tiago Dias
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
 
 # Logging
 import logging
@@ -15,7 +30,10 @@ import requests
 
 # Processing
 from PIL import Image, ImageFile
-import StringIO
+try:
+	from StringIO import StringIO
+except ImportError:
+	from io import BytesIO as StringIO
 import operator
 
 # Serializing
@@ -38,7 +56,7 @@ r = requests.get('http://www.ipma.pt/resources.www/transf/indices/rcm_dh.jpg', t
 # Load the image's pixels into an array
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 logging.info('Loading image')
-im = Image.open(StringIO.StringIO(r.content))
+im = Image.open(StringIO(r.content))
 image = im.load()
 
 def getLevel(x, y):
@@ -56,7 +74,12 @@ def getLevel(x, y):
 	closest = (0, 196609) # Level, Difference
 	
 	# Level, Level color
-	for level, lc in levels.iteritems():
+	try:
+		items = levels.iteritems()
+	except AttributeError:
+		items = levels.items()
+
+	for level, lc in items:
 		pc = image[x, y] # Pixel color
 		difference = (pc[0]-lc[0])**2 + (pc[1]-lc[1])**2 + (pc[2]-lc[2])**2
 		

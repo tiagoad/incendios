@@ -1,8 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# generate.py
-# Generates the fires.json file with all the fire and fire hazard information
+"""
+generate_fires.py -- Generates the fires.json file with all the fire and fire hazard informationtion
+Copyright (C) 2014 Tiago Dias
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
 
 # Logging
 import logging
@@ -14,10 +29,13 @@ import os
 import requests
 
 # Parsing
-from tidylib import tidy_document
-import HTMLParser
-import xml.etree.ElementTree as ElementTree
+try:
+	import HTMLParser
+except ImportError:
+	import html.parser as HTMLParser
 import re
+from bs4 import BeautifulSoup as BeautifulSoup
+import xml.etree.ElementTree as ElementTree
 
 # Serializing
 import json
@@ -67,18 +85,13 @@ if r.status_code != 200:
 
 # Fix the disgusting HTML retrieved
 logging.info('Cleaning HTML')
-tidyhtml, errors = tidy_document(r.content, options = {
-	'char-encoding': 'utf8',
-	'numeric-entities': True
-})
+bs = BeautifulSoup(r.content)
+clean_html = bs.prettify().encode('utf-8')
 
 logging.info('Parsing HTML')
 
-# Remove xmlns tag
-tidyhtml = re.sub('xmlns="[^"]+"', '', tidyhtml, count=1)
-
 # Create an ElementTree root from the tidyied HTML
-root = ElementTree.fromstring(tidyhtml)
+root = ElementTree.fromstring(clean_html)
 
 # Get the individual fire tables
 incendios = root.findall(".//table[@id='ewlistmainNew']/tr/td/table")
