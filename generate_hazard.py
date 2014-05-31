@@ -279,7 +279,7 @@ concelhos = {
 	'Sousel': (266, 402),
 	
 	#Faro
-	'Albufeira': (222, 216),
+	'Albufeira': (222, 616),
 	'Alcoutim': (276, 585),
 	'Aljezur': (174, 593),
 	'Castro Marim': (287, 595),
