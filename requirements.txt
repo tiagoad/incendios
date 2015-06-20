@@ -1,0 +1,5 @@
+Pillow
+beautifulsoup4
+pyyaml
+pyproj
+requests
