@@ -2,8 +2,7 @@ incendios.ttsda.cc
 ==================
 *A map of forest fires in Portugal.*
 
-*THIS NO LONGER WORKS*
-Although the fire hazard script still works, prociv removed the HTML fire occurence table from their website and replaced it with a generated PDF (why?), making the `generate_fires.py` script useless.
+**THIS NO LONGER WORKS:** Although the fire hazard script still works, prociv removed the HTML fire occurence table from their website and replaced it with a generated PDF (why?), making the `generate_fires.py` script useless.
 ---
 
 The fire data is scraped from the "Proteção Cívil" website, and the fire hazard data from the "IPMA" website.
