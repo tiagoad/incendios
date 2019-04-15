@@ -24,4 +24,4 @@ Press
 -----
 There have been a few press references to this project (please change this file and pull request if you find more, or e-mail me the article)
 
-* [Sapo Tek](http://tek.sapo.pt/tek_mobile/apps/aplicacao_localiza_incendios_no_mapa_do_pais_1338121.html)
+* [Sapo Tek](https://tek.sapo.pt/mobile/apps/artigos/aplicacao-localiza-incendios-no-mapa-do-pais)
